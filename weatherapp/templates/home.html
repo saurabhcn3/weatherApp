@@ -1,0 +1,103 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather in {{ dta.city }}</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            color: #fff;
+            background: linear-gradient(to top, #3b0a1e, #aa4b2f);
+            background-image: url("{% static 'images/bg.jpg' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .container {
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        form {
+            margin-bottom: 30px;
+        }
+
+        input[type="text"] {
+            padding: 12px 20px;
+            border-radius: 10px;
+            border: none;
+            width: 250px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 12px 20px;
+            border-radius: 10px;
+            border: none;
+            background-color: #ff6f00;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .city {
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .date {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .temp {
+            font-size: 100px;
+            font-weight: bold;
+            text-shadow: 4px 4px #000;
+        }
+
+        .description {
+            font-size: 30px;
+            font-style: italic;
+            margin-top: -20px;
+        }
+
+        .details {
+            font-size: 20px;
+            margin-top: 30px;
+        }
+
+        .icon {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- City Search Form -->
+        <form method="GET" action="">
+            <input type="text" name="city" placeholder="Search for a city" required>
+            <button type="submit">Search</button>
+        </form>
+
+        <!-- Weather Info -->
+
+        <div class="city">{{ data.city }}, {{data.country}}</div>
+        <div class="date">{{ data.today }}</div>
+
+        <div class="temp">{{ data.temp }}°C</div>
+        <img class="icon" src="{{ data.icon }}" alt="weather icon">
+        <div class="description">{{ data.description }}</div>
+
+        <div class="details">
+            <p>Pressure: {{ data.pressure }} hPa</p>
+            <p>Humidity: {{ data.humidity }}%</p>
+        </div>
+    </div>
+</body>
+</html>
